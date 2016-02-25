@@ -1,0 +1,15 @@
+<div class="modalScreen">
+  <div class="completeOrderModal panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Complete Order</h3>
+    </div>
+    <div class="panel-body">
+	  {{ input type='checkbox' }}Print receipt<br/>
+	  {{ input type='checkbox' checked=emailReceipt }}Email receipt: {{ input disabled=disabledEmail value=unboundCustomerEmail }}<br/>
+      <br/>
+	  {{ input type='checkbox' }}Print coupon&nbsp;{{view "select" content=couponSelections classNames="form-control"}}
+
+	  <button {{action 'closeModal'}}>Submit</button>&nbsp;<button {{action 'closeModal'}}>Cancel</button>
+    </div>
+  </div>
+</div>

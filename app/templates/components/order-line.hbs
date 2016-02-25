@@ -1,0 +1,20 @@
+<tr>
+	<td class="col-sm-1 text-center">
+		{{#if multipleLines}}
+		<button type='button' {{action 'removeOrderLine' line.id}} class='btn btn-default btn-lg minusButton'>
+			<span class='glyphicon glyphicon-minus' aria-hidden='true'></span>
+		</button>
+		{{/if}}
+	</td>
+	<td class="col-sm-1">{{input type="number" value=line.quantity classNames="form-control input-lg"}}</td>
+	<td class="col-sm-3">{{view "select" value=line.category content=productCategories classNames="form-control input-lg"}}</td>
+	{{#if toggleDesc}}
+		<td class="col-sm-2">{{input type="input" value=line.desc classNames="form-control input-lg"}}</td>
+	{{/if}}
+	<td class="col-sm-1 text-right">{{input type="number" value=line.cost classNames="form-control input-lg"}}</td>
+	{{#if toggleDiscount}}
+		<td class="col-sm-1">{{input type="number" value=line.discount classNames="form-control input-lg"}}</td>
+	{{/if}}
+	<td class="col-sm-1 text-right">{{line.tax}}</td>
+	<td class="col-sm-1 text-right">{{line.total}}</td>
+</tr>
