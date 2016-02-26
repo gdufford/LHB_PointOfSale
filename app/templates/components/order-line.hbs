@@ -6,15 +6,17 @@
 		</button>
 		{{/if}}
 	</td>
-	<td class="col-sm-1">{{input type="number" value=line.quantity classNames="form-control input-lg"}}</td>
-	<td class="col-sm-3">{{view "select" value=line.category content=productCategories classNames="form-control input-lg"}}</td>
-	{{#if toggleDesc}}
-		<td class="col-sm-2">{{input type="input" value=line.desc classNames="form-control input-lg"}}</td>
+	<td class="col-sm-1">{{input type="number" value=line.quantity classBinding=":input-lg :form-control line.invalidQuantity:invalidInput"}}</td>
+	<td class="col-sm-3">{{view "select" prompt='Choose category' value=line.category content=productCategories classBinding=":form-control :input-lg line.invalidCategory:invalidInput"}}</td>
+	{{#if line.isHenna}}
+		<td class="col-sm-2">{{view "select" value=line.hennaArtist prompt='Choose...' content=hennaArtists classBinding=":form-control :input-lg line.invalidHennaArtist:invalidInput"}}</td>
+	{{else if line.order.orderHasHenna}}
+		<td class="col-sm-2">&nbsp;</td>
 	{{/if}}
-	<td class="col-sm-1 text-right">{{input type="number" value=line.cost classNames="form-control input-lg"}}</td>
+	<td class="col-sm-1 text-right">{{input type="number" value=line.cost classBinding=":form-control :input-lg line.invalidCost:invalidInput"}}</td>
 	{{#if toggleDiscount}}
-		<td class="col-sm-1">{{input type="number" value=line.discount classNames="form-control input-lg"}}</td>
+		<td class="col-sm-1">{{input type="number" value=line.discount classBinding=":form-control :input-lg line.invalidDiscount:invalidInput"}}</td>
 	{{/if}}
-	<td class="col-sm-1 text-right">{{line.tax}}</td>
-	<td class="col-sm-1 text-right">{{line.total}}</td>
+	<td class="col-sm-1 text-right">${{line.tax}}</td>
+	<td class="col-sm-1 text-right">${{line.total}}</td>
 </tr>

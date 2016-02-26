@@ -4,12 +4,15 @@
       <h3 class="panel-title">Complete Order</h3>
     </div>
     <div class="panel-body">
-	  {{ input type='checkbox' }}Print receipt<br/>
-	  {{ input type='checkbox' checked=emailReceipt }}Email receipt: {{ input disabled=disabledEmail value=unboundCustomerEmail }}<br/>
+	  {{input type='checkbox' checked=emailReceipt}}Email receipt: {{input disabled=disabledEmail value=completeOrderEmail}}<br/>
       <br/>
-	  {{ input type='checkbox' }}Print coupon&nbsp;{{view "select" content=couponSelections classNames="form-control"}}
-
-	  <button {{action 'closeModal'}}>Submit</button>&nbsp;<button {{action 'closeModal'}}>Cancel</button>
+	  {{input type='checkbox' checked=printReceipt}}Print receipt
+	  <br/>
+	  {{input type='checkbox' disabled=disabledPrinting checked=printExtraReciept}} Extra copy
+	  <br/>
+	  {{input type='checkbox' disabled=disabledPrinting checked=printCoupon}}Print coupon&nbsp;{{view "select" disabled=disabledPrinting content=couponSelections value=couponSelection prompt='Choose coupon...' classNames="form-control"}}
+	  <br/><br/>
+	  <button {{action 'closeModal'}}>Submit</button>&nbsp;<button {{action 'closeModal'}}>Cancel</button><br/>
     </div>
   </div>
 </div>

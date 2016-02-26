@@ -1,3 +1,8 @@
+
+.invalidInput {
+	border: 4px solid red !important;
+}
+
 .modalScreen {
   height: 100%;
   width: 100%;
