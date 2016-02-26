@@ -7,16 +7,16 @@
     {{input type="input" value=model.customerEmail classNames="form-control input-lg" placeholder="Email"}}
   </div>
   <div class="col-sm-2">
-    {{input type="input" value=model.zipCode classNames="form-control input-lg" placeholder="Zip"}}
+    {{input type="input" value=model.zipCode classBinding=":form-control :input-lg model.invalidZipCode:invalidInput" placeholder="Zip"}}
   </div>
 </div>
 
 <div style="border-bottom: 3px solid gray" class="row form-group-lg" style="padding: 10px; background-color: #FF9900;">
   <div class="col-sm-5">
-    {{view "select" prompt="Choose clerk..." value=salesClerk content=controllers.application.clerkNames classNames="form-control"}}
+    {{view "select" prompt="Choose clerk..." value=salesClerk content=controllers.application.clerkNames classBinding=":form-control model.invalidSalesClerk:invalidInput"}}
   </div>
   <div class="col-sm-5">
-    {{view "select" prompt="Choose payment method..." value=paymentType content=controllers.application.payMethods classNames="form-control"}}
+    {{view "select" prompt="Choose payment method..." value=paymentType content=controllers.application.payMethods classBinding=":form-control model.invalidPaymentType:invalidInput"}}
   </div>
   <div class="col-sm-2">
     <label><h3 class="text-center">{{model.orderNumber}}</h3></label>
