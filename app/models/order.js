@@ -22,24 +22,28 @@ var order = DS.Model.extend({
 		return this.get('paymentType') === undefined || this.get('paymentType') === "" || this.get('paymentType') == null;
 	}.property('paymentType'),
 	
-	orderTotal: function() {
+	orderTotal: DS.attr('Number'),
+	orderTotalCalc: function() {
 		let orderTotalVar = 0;
 		this.get('orderlines').forEach(function(orderline) {
 			orderTotalVar += orderline.get('total');
 		});
-		return Math.round(orderTotalVar * 100) / 100;
-	}.property('orderlines.@each.total'),
+		this.set('orderTotal', Math.round(orderTotalVar * 100) / 100);
+	}.observes('orderlines.@each.total'),
+	
 	orderlines: DS.hasMany('orderline'),
 	orderIsDiscounted: function () {
 		let orderIsDiscounted = false;
 		this.get('orderlines').forEach(function(orderline) { if (Number(orderline.get('discount')) !== 0) orderIsDiscounted = true; });
 		return orderIsDiscounted;
 	}.property('orderlines.@each.discount'),
+	
 	orderHasHenna: function() {
 		let orderHasHenna = false;
 		this.get('orderlines').forEach(function(orderline) { if (orderline.get('category') === "Henna") orderHasHenna = true;});
 		return orderHasHenna;
 	}.property('orderlines.@each.category'),
+	
 	failValidation: function() {
 		if (this.get('invalidZipCode') || this.get('invalidSalesClerk') || this.get('invalidPaymentType')) return true;
 		

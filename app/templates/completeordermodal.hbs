@@ -4,6 +4,14 @@
       <h3 class="panel-title">Complete Order</h3>
     </div>
     <div class="panel-body">
+    Clerk: {{view "select" prompt="Choose clerk..." value=salesClerk content=controller.clerkNames classBinding=":form-control model.invalidSalesClerk:invalidInput"}}<br/>
+    <br/>
+    Pay Method: {{view "select" prompt="Choose payment method..." value=paymentType content=controller.payMethods classBinding=":form-control model.invalidPaymentType:invalidInput"}}<br/>
+    <br/>
+    Customer Name: {{input type="text" value=customerName}}<br/>
+    <br/>
+    Zip Code: {{input type="text" value=zipCode}}<br/>
+    <br/>
 	  {{input type='checkbox' checked=emailReceipt}}Email receipt: {{input disabled=disabledEmail value=completeOrderEmail}}<br/>
       <br/>
 	  {{input type='checkbox' checked=printReceipt}}Print receipt
@@ -12,7 +20,8 @@
 	  <br/>
 	  {{input type='checkbox' disabled=disabledPrinting checked=printCoupon}}Print coupon&nbsp;{{view "select" disabled=disabledPrinting content=couponSelections value=couponSelection prompt='Choose coupon...' classNames="form-control"}}
 	  <br/><br/>
-	  <button {{action 'closeModal'}}>Submit</button>&nbsp;<button {{action 'closeModal'}}>Cancel</button><br/>
+	  <button {{action 'closeModal'}}>Submit</button>&nbsp;<button {{action 'closeModal'}}>Cancel</button><br/><br/>
+	  <button {{action 'persistToLocalStorage'}}>PERSIST</button><br/>
     </div>
   </div>
 </div>

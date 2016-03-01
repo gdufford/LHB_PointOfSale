@@ -5,14 +5,14 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   beforeModel: function() {
     var newOrder = this.store.createRecord('order',{id: 1, orderNumber: '120315_111200'});
-    newOrder.save();
+    //newOrder.save();
 		
 	var newOrderLine = this.store.createRecord('orderline',{id: 1, quantity: 1, cost: 0, discount: 0});
-    newOrderLine.save();
+    //newOrderLine.save();
 
     this.store.find('order', 1).then(function(order) {
         newOrderLine.set('order', order);
-        order.save();
+        //order.save();
     });
   },
   model: function() {

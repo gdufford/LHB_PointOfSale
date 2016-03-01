@@ -4,7 +4,6 @@ import Ember from 'ember';
 
 //-- This line was 'Ember.Controller.extend' and was NOT working, the resulting orderline wasn't showing --//
 export default Ember.ObjectController.extend({
-	needs: "application",
 	toggleDiscount: false,
 	formColSpan: 5,
 	hennaArtists: ["Deb","Jasmine","Kelly","Isabel","Rico"],
@@ -16,14 +15,14 @@ export default Ember.ObjectController.extend({
 		/*if (this.get('orderHasHenna'))
 			if (this.get('formColSpan') < 6)
 				this.set('formColSpan', this.get('formColSpan') + 1);
-		else	
+		else
 			if (this.get('formColSpan') > 5)
 				this.set('formColSpan', this.get('formColSpan') - 1);*/
 	}.observes('orderHasHenna'),
 	multipleLines: Ember.computed('orderlines.[]', {
 		get() {
 			return this.model.get('orderlines').get('length') > 1;
-		} 
+		}
 	}),
 	newOrderNumber: function() {
 		var today = new Date();
@@ -33,7 +32,7 @@ export default Ember.ObjectController.extend({
 		var minutes = ("" + today.getMinutes()).length === 1 ? "0" + today.getMinutes() : "" + today.getMinutes();
 		var seconds = ("" + today.getSeconds()).length === 1 ? "0" + today.getSeconds() : "" + today.getSeconds();
 		return day + month + today.getYear() + "_" + hour + minutes + seconds;
-	}, 
+	},
 	actions: {
 		completeOrder: function() {
 			console.log('validation check here?');
@@ -42,11 +41,11 @@ export default Ember.ObjectController.extend({
 		toggleDiscount: function() {
 			this.set('toggleDiscount', !this.get('toggleDiscount'));
 			var formColSpan = this.get('formColSpan');
-			if (this.get('toggleDiscount')) 
-				this.set('formColSpan', formColSpan += 1); 
-			else 
+			if (this.get('toggleDiscount'))
+				this.set('formColSpan', formColSpan += 1);
+			else
 				this.set('formColSpan', formColSpan += -1);
-		}, 
+		},
 		newOrder: function(){
 			var ordersById = this.model.get('orders');
 			var nextId = 1;
@@ -57,7 +56,7 @@ export default Ember.ObjectController.extend({
 
 			var newOrderNumber = this.get('newOrderNumber').call(this);
 			var newOrder = this.store.createRecord('order',{id: nextId, orderNumber: newOrderNumber});
-			newOrder.save();
+			//newOrder.save();
 			this.model.set('orders', newOrder);
 
 			var orderLinesByID = this.model.get('orderlines');
@@ -79,11 +78,11 @@ export default Ember.ObjectController.extend({
 			}
 
 			var newOrderLine = this.store.createRecord('orderline',{id: nextId, quantity: 1, cost: 0, discount: 0});
-			newOrderLine.save();
+			//newOrderLine.save();
 
 			this.store.find('order', 1).then(function(order) {
 				newOrderLine.set('order', order);
-				order.save();
+				//order.save();
 			});
 		}
 	}
