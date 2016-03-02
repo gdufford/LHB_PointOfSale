@@ -1,33 +1,13 @@
 {{! templates/order.hbs }}
 <div class="row form-group-lg" style="padding: 10px; background-color: #FF9900;">
-  <div class="col-sm-5">
-    {{input type="input" value=model.customerName classNames="form-control input-lg" placeholder="Name"}}
-  </div>
-  <div class="col-sm-5">
-    {{input type="input" value=model.customerEmail classNames="form-control input-lg" placeholder="Email"}}
-  </div>
-  <div class="col-sm-2">
-    {{input type="input" value=model.zipCode classBinding=":form-control :input-lg model.invalidZipCode:invalidInput" placeholder="Zip"}}
-  </div>
-</div>
-
-<div style="border-bottom: 3px solid gray" class="row form-group-lg" style="padding: 10px; background-color: #FF9900;">
-  <div class="col-sm-5">
-    {{view "select" prompt="Choose clerk..." value=salesClerk content=controllers.application.clerkNames classBinding=":form-control model.invalidSalesClerk:invalidInput"}}
-  </div>
-  <div class="col-sm-5">
-    {{view "select" prompt="Choose payment method..." value=paymentType content=controllers.application.payMethods classBinding=":form-control model.invalidPaymentType:invalidInput"}}
-  </div>
-  <div class="col-sm-2">
-    <label><h3 class="text-center">{{model.orderNumber}}</h3></label>
-  </div>
+  New Order
 </div>
 
 <!-- End of header ------------------------------------------------------------------------ -->
 
 <table class="table table-bordered" style="border: 2px;">
   <tbody>
-    <tr> 
+    <tr>
       <td class="col-sm-1"></td>
       <td class="col-sm-1"><h3>Qty</h3></td>
       <td class="col-sm-3"><h3>Category</h3></td>
@@ -53,8 +33,8 @@
       <td class="col-sm-1 text-right"><h3>Total</h3></td>
     </tr>
 
-	
-	
+
+
 	<!-- Start of orderlines ---------------------------------------------------------- -->
 
     {{#each orderline in orderlines}}
@@ -62,8 +42,8 @@
     {{/each}}
 
 	<!-- End of orderlines ---------------------------------------------------------- -->
-	
-	
+
+
 	<!-- New orderline row --------------------------------------------------------- -->
     <tr>
       <td class="col-sm-1 text-center">
@@ -78,7 +58,7 @@
 	<!-- Order Total row ---------------------------------------------------------- -->
     <tr>
       <td class="col-sm-10 text-center" colspan="{{formColSpan}}">
-        <button {{action 'completeOrder' 'completeordermodal' model}} {{bindAttr disabled='model.failValidation'}} id="completeOrderButton" class="btn completeOrderButton">
+        <button {{action 'completeOrder' 'completeordermodal' model}} id="completeOrderButton" class="btn completeOrderButton">
           COMPLETE ORDER
         </button>
       </td>
@@ -87,4 +67,3 @@
   </tbody>
   <button {{action 'cashDrawer' 'cashdrawermodal' model}} class="btn">Cash Drawer</button>
 </table>
-

@@ -4,6 +4,7 @@ import Ember from 'ember';
 
 //-- This line was 'Ember.Controller.extend' and was NOT working, the resulting orderline wasn't showing --//
 export default Ember.ObjectController.extend({
+	needs: "application",
 	toggleDiscount: false,
 	formColSpan: 5,
 	hennaArtists: ["Deb","Jasmine","Kelly","Isabel","Rico"],

@@ -4,21 +4,13 @@
       <h3 class="panel-title">Complete Order</h3>
     </div>
     <div class="panel-body">
-    Clerk: {{view "select" prompt="Choose clerk..." value=salesClerk content=controller.clerkNames classBinding=":form-control model.invalidSalesClerk:invalidInput"}}<br/>
-    <br/>
-    Pay Method: {{view "select" prompt="Choose payment method..." value=paymentType content=controller.payMethods classBinding=":form-control model.invalidPaymentType:invalidInput"}}<br/>
-    <br/>
-    Customer Name: {{input type="text" value=customerName}}<br/>
-    <br/>
-    Zip Code: {{input type="text" value=zipCode}}<br/>
-    <br/>
-	  {{input type='checkbox' checked=emailReceipt}}Email receipt: {{input disabled=disabledEmail value=completeOrderEmail}}<br/>
-      <br/>
-	  {{input type='checkbox' checked=printReceipt}}Print receipt
-	  <br/>
-	  {{input type='checkbox' disabled=disabledPrinting checked=printExtraReciept}} Extra copy
-	  <br/>
-	  {{input type='checkbox' disabled=disabledPrinting checked=printCoupon}}Print coupon&nbsp;{{view "select" disabled=disabledPrinting content=couponSelections value=couponSelection prompt='Choose coupon...' classNames="form-control"}}
+    Clerk: {{view "select" prompt="Choose clerk..." value=model.salesClerk content=controller.clerkNames classBinding=":form-control :input-med model.invalidSalesClerk:invalidInput"}}<br/>
+    Payment: {{view "select" prompt="Choose payment method..." value=model.paymentType content=controller.payMethods classBinding=":form-control :input-med model.invalidPaymentType:invalidInput"}}<br/>
+    Zip Code: {{input type="text" value=model.zipCode classBinding=":form-control :input-med  model.invalidZipCode:invalidInput"}}<br/>
+	  {{input type='checkbox' checked=emailReceipt}} Email receipt: {{input disabled=disabledEmail value=completeOrderEmail classBinding=":form-control :input-med badEmail:invalidInput"}}<br/>
+	  {{input type='checkbox' checked=printReceipt}} Print receipt<br/>
+	  {{input type='checkbox' disabled=disabledPrinting checked=printExtraReciept}} Extra copy<br/>
+	  {{input type='checkbox' disabled=disabledPrinting checked=printCoupon}} Print coupon&nbsp;{{view "select" disabled=disabledCoupon content=couponSelections value=couponSelection prompt='Choose coupon...' classBinding=":form-control :input-med badCoupon:invalidInput"}}
 	  <br/><br/>
 	  <button {{action 'closeModal'}}>Submit</button>&nbsp;<button {{action 'closeModal'}}>Cancel</button><br/><br/>
 	  <button {{action 'persistToLocalStorage'}}>PERSIST</button><br/>
