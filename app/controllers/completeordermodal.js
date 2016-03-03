@@ -3,8 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 	cashDrawerBalance: 0,
 	disabledEmail: true,
-	clerkNames: ["Deb","Jasmine","Kelly","Layne","Isabel","Garry","Other"],
-	payMethods: ["Cash","Check","Credit"],
+	needs: 'application',
 	disabledPrinting: true,
 	printCoupon: false,
 	badCoupon: false,
@@ -30,7 +29,6 @@ export default Ember.Controller.extend({
 		}
 		this.set('disabledPrinting', !this.get('printReceipt'));
 	}.observes('printReceipt'),
-	couponSelections: ['10% off next order','Free $5 Henna','Free foot rub'],
 	invalidCouponSelection: function() {
 		if (this.get('printCoupon') && (this.get('couponSelection') === undefined || this.get('couponSelection') === "" || this.get('couponSelection') == null))
 			this.set('badCoupon', true);
@@ -52,7 +50,6 @@ export default Ember.Controller.extend({
 			this.get('target').send('closeModal');
 		},
 		persistToLocalStorage () {
-			//debugger;
 			this.store.find('orderline').then(function(orderlines){
 				orderlines.forEach(function(orderline) { orderline.save(); });
 			});

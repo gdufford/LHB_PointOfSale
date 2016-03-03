@@ -1,6 +1,6 @@
 {{! templates/order.hbs }}
-<div class="row form-group-lg" style="padding: 10px; background-color: #FF9900;">
-  New Order
+<div class="row form-group-lg pageTitle" style="padding: 10px; background-color: #FF9900;">
+  <h1 style="font-family: 'Times New Roman', Times, serif;">La Henna Boheme</h1>
 </div>
 
 <!-- End of header ------------------------------------------------------------------------ -->
@@ -12,7 +12,7 @@
       <td class="col-sm-1"><h3>Qty</h3></td>
       <td class="col-sm-3"><h3>Category</h3></td>
 	  {{#if model.orderHasHenna}}
-		<td class="col-sm-2"><h3>Henna Artist</h3></td>
+  		<td class="col-sm-2"><h3>Henna Artist</h3></td>
 	  {{/if}}
       <td class="col-sm-1 text-right">
 	  	<table width="100%">
@@ -38,7 +38,7 @@
 	<!-- Start of orderlines ---------------------------------------------------------- -->
 
     {{#each orderline in orderlines}}
-      {{order-line line=orderline tagName='' hennaArtists=hennaArtists multipleLines=multipleLines toggleDiscount=toggleDiscount}}
+      {{order-line line=orderline tagName='' categories=controllers.application.productCategories hennaArtists=controllers.application.artistNames multipleLines=multipleLines toggleDiscount=toggleDiscount}}
     {{/each}}
 
 	<!-- End of orderlines ---------------------------------------------------------- -->
@@ -62,7 +62,7 @@
           COMPLETE ORDER
         </button>
       </td>
-      <td class="col-sm-2 text-right lead">${{model.orderTotal}}</td>
+      <td class="col-sm-2 text-right lead">{{format-number model.orderTotal style="currency" currency="USD"}}</td>
     </tr>
   </tbody>
   <button {{action 'cashDrawer' 'cashdrawermodal' model}} class="btn">Cash Drawer</button>

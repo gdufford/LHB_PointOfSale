@@ -1,0 +1,10 @@
+{
+  "salesTaxRate": 0.5,
+  "configClerkNames": ["Deb","Kelly","Jasmine","Layne","Other"],
+  "artistNames": ["Deb","Kelly","Jasmine","O'Neil","Isabel","Other"],
+  "categories": ["Clothing","Henna","Shoes","Gifts","Books","Decor","Other"],
+  "paymentMethods": ["Credit","Cash","Check","Return - Credit","Return - Cash"],
+  "coupons": [{"id": 1, "name": "10_percent_off", "desc": "10% off next order"},
+            {"id": 2, "name": "Free_sale_item_choice", "desc": "Choice of free sale item with next order"},
+            {"id": 3, "name": "Free_5_dollar_henna", "desc": "Free $5 henna with next order"}]
+}

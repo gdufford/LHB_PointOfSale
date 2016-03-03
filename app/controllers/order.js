@@ -7,7 +7,6 @@ export default Ember.ObjectController.extend({
 	needs: "application",
 	toggleDiscount: false,
 	formColSpan: 5,
-	hennaArtists: ["Deb","Jasmine","Kelly","Isabel","Rico"],
 	hennaColSpan: function() {
 		if (!this.model.get('orderHasHenna') && !this.get('toggleDiscount')) this.set('formColSpan', 5);
 		if (this.model.get('orderHasHenna') && !this.get('toggleDiscount')) this.set('formColSpan', 6);
