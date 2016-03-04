@@ -58,7 +58,7 @@
 	<!-- Order Total row ---------------------------------------------------------- -->
     <tr>
       <td class="col-sm-10 text-center" colspan="{{formColSpan}}">
-        <button {{action 'completeOrder' 'completeordermodal' model}} id="completeOrderButton" class="btn completeOrderButton">
+        <button {{action 'completeOrder' model}} id="completeOrderButton" class="btn completeOrderButton">
           COMPLETE ORDER
         </button>
       </td>
@@ -67,3 +67,5 @@
   </tbody>
   <button {{action 'cashDrawer' 'cashdrawermodal' model}} class="btn">Cash Drawer</button>
 </table>
+
+{{outlet}}

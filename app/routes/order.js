@@ -6,7 +6,7 @@ export default Ember.Route.extend({
   beforeModel: function() {
     var newOrder = this.store.createRecord('order',{id: 1, orderNumber: '120315_111200'});
     //newOrder.save();
-		
+
 	var newOrderLine = this.store.createRecord('orderline',{id: 1, quantity: 1, cost: 0, discount: 0});
     //newOrderLine.save();
 
@@ -19,26 +19,18 @@ export default Ember.Route.extend({
     return this.store.find('order',1);
   }, //Model initally empty, order is new, will need to change if a lookup mode is established
   actions: {
-    completeOrder: function( toRender, passedModel) {
+    completeOrder: function(passedModel) {
+      this.transitionTo('order.completeorder');
+    },
+    cashDrawer: function( toRender, passedModel) {
       this.controllerFor(toRender).set( 'model', passedModel );
-      return this.render('completeordermodal', {
+      return this.render('cashdrawermodal', {
         into: 'application',
         outlet: 'modal'
       });
     },
-	cashDrawer: function( toRender, passedModel) {
-		this.controllerFor(toRender).set( 'model', passedModel );
-		return this.render('cashdrawermodal', {
-			into: 'application',
-			outlet: 'modal'
-		});
-	},
     closeModal: function() {
-		this.set('emailReceipt',false);
-		return this.disconnectOutlet({
-			outlet: 'modal',
-			parentView: 'application'
-      });
+      this.transitionTo('order');
     }
   }
 });

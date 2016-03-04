@@ -7,9 +7,8 @@
     Clerk: {{view "select" prompt="Choose clerk..." value=model.salesClerk content=controllers.application.clerkNames classBinding=":form-control :input-med model.invalidSalesClerk:invalidInput"}}<br/>
     Payment: {{view "select" prompt="Choose payment method..." value=model.paymentType content=controllers.application.payMethods classBinding=":form-control :input-med model.invalidPaymentType:invalidInput"}}<br/>
     Zip Code: {{input type="text" value=model.zipCode classBinding=":form-control :input-med  model.invalidZipCode:invalidInput"}}<br/>
-	  {{input type='checkbox' checked=emailReceipt}} Email receipt: {{input disabled=disabledEmail value=completeOrderEmail classBinding=":form-control :input-med badEmail:invalidInput"}}<br/>
-	  {{input type='checkbox' checked=printReceipt}} Print receipt<br/>
-	  {{input type='checkbox' disabled=disabledPrinting checked=printExtraReciept}} Extra copy<br/>
+	  {{#if controllers.application.emailOption}}{{input type='checkbox' checked=emailReceipt}} Email receipt: {{input disabled=disabledEmail value=completeOrderEmail classBinding=":form-control :input-med badEmail:invalidInput"}}<br/>{{/if}}
+	  {{input type='checkbox' checked=printReceipt}} Print receipt&nbsp;{{input type='checkbox' disabled=disabledPrinting checked=printExtraReciept}} Extra copy<br/>
     {{#if (gt controllers.application.coupons.length 0)}} {{! requires ember-truth-helpers for 'gt' functionality}}
       {{input type='checkbox' disabled=disabledPrinting checked=printCoupon}} Print coupon&nbsp;{{view "select" disabled=disabledCoupon content=controllers.application.coupons optionValuePath="content.name" optionLabelPath="content.desc" value=couponSelection prompt='Choose coupon...' classBinding=":form-control :input-med badCoupon:invalidInput"}}
     {{/if}}
@@ -19,3 +18,4 @@
     </div>
   </div>
 </div>
+{{outlet}}

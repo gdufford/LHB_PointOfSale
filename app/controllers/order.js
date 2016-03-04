@@ -35,7 +35,6 @@ export default Ember.ObjectController.extend({
 	},
 	actions: {
 		completeOrder: function() {
-			console.log('validation check here?');
 			return true;
 		},
 		toggleDiscount: function() {

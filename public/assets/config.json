@@ -1,5 +1,6 @@
 {
   "salesTaxRate": 0.5,
+  "emailOption": "false",
   "configClerkNames": ["Deb","Kelly","Jasmine","Layne","Other"],
   "artistNames": ["Deb","Kelly","Jasmine","O'Neil","Isabel","Other"],
   "categories": ["Clothing","Henna","Shoes","Gifts","Books","Decor","Other"],

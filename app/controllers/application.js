@@ -8,6 +8,7 @@ export default Ember.Controller.extend({
   payMethods: null,
   coupons: null,
   init: function() {
+    //Loading of app config from json file in assets.
     var controllerRef = this;
     Ember.$.getJSON("/assets/config.json").then(function(configData) {
       controllerRef.set('clerkNames', configData.configClerkNames);
